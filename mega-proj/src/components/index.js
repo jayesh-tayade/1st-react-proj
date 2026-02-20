@@ -5,10 +5,12 @@ import Logo from "./Logo";
 import RTE from "./RTE";
 import Input from "./Input"
 import Login from "./Login"
-import Signup from "./pages/Signup";
+import Signup from "./SignUp";
 import PostCard from "./PostCard"
 import Select from "./Select"
 import AuthLayout from "./AuthLayout"
 import Container from "../container/Container"
+import authService from "../appwrite/auth";
+import service from "../appwrite/config";
 
-export default {Header,Footer,Button,Logo,RTE,Input,Login,Signup,PostCard,Select,AuthLayout,Container} 
+export {Header,Footer,Button,Logo,RTE,Input,Login,Signup,PostCard,Select,AuthLayout,Container,authService,service} 

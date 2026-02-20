@@ -6,6 +6,7 @@ import {Header,Footer,Button,Logo} from './index'
 import authService from '../appwrite/auth'
 import { useNavigate } from 'react-router-dom'
 import Input from './Input'
+import { Link } from 'react-router-dom'
 
 function Login() {
     const dispatch = useDispatch()

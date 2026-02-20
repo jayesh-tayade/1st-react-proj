@@ -6,13 +6,14 @@ import {Header,Footer,Button,Logo} from './index'
 import authService from '../appwrite/auth'
 import { useNavigate } from 'react-router-dom'
 import Input from './Input'
-import React from 'react'
+import { Link } from 'react-router-dom'
+
 
 function SignUp() {
     const dispatch = useDispatch()
     const {register,handleSubmit} = useForm()
     const navigate = useNavigate()
-    const {error,setError} = useState("")
+    const [error,setError] = useState("")
     const create = async (data)=>{
         setError("")
         try {
@@ -51,7 +52,7 @@ function SignUp() {
             <div className='space-y-5'>
                 <Input  //for name
                     label="Full Name:"
-                    placeholder="Enter your email"
+                    placeholder="Enter your Full Name"
                     {...register("name",{required:true})}
                 />
                 <Input //for email 
