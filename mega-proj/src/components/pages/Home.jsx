@@ -3,6 +3,7 @@ import React from 'react'
 //import appwriteService from '../appwrite/config'
 import {Container} from '../index.js'
 import {service as appwriteService} from "../index.js"
+import PostCard from "../PostCard.jsx"
 
 function Home() {
     const [posts,setPosts] = useState([])

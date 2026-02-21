@@ -17,7 +17,7 @@ export default function Protected({children, authentication=true}) {
 
   return (
     <div>
-      loader ? <h2>Loading....</h2> : {children} 
+      {loader?(<h2>Loading....</h2>):children}
     </div>
   )
 }

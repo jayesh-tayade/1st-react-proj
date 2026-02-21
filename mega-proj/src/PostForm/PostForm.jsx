@@ -17,7 +17,7 @@ function PostForm({post}) {
         },
     });    
     const navigate = useNavigate()
-    const userData = useSelector(state => state.user.userData)
+    const userData = useSelector(state => state.auth.userData)
 
     const submit = async(data) =>{
         if(post){
@@ -53,16 +53,19 @@ function PostForm({post}) {
         }
     }
 
-    const slugTransform = useCallback((value)=>{
-        if(value && typeof value ==='string')
-            return value
-                .trim()
-                .toLowerCase()
-                .replace(/^[a-zA-Z\d]+/g,'-')
-                .replace(/\s/g,'-')
-
-            return ''
-    },[])
+const slugTransform = useCallback((value) => {
+    if (value && typeof value === "string") {
+        return value
+            .trim()
+            .toLowerCase()
+            .replace(/[^a-z0-9\s-]/g, "") // remove invalid chars
+            .replace(/\s+/g, "-")        // spaces → hyphen
+            .replace(/-+/g, "-")         // multiple hyphens → one
+            .replace(/^-+|-+$/g, "")     // trim hyphens from start/end
+            .substring(0, 36);           // Appwrite limit
+    }
+    return "";
+}, []);
 
     useEffect(()=>{
         const subscription = watch((value, {name})=>{

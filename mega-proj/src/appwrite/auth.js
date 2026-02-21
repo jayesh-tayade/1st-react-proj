@@ -18,7 +18,7 @@ export class AuthService {
             if(userAccount){
                 //call a function to directly login
                 //---> function to login is called
-                return this.account.login({email,password})
+                return this.login({email,password})
             }else{
                 return userAccount;
             }

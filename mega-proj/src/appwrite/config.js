@@ -106,7 +106,7 @@ export class Service{
         }
     }
 //the above method/service returns fileId which is used for further operations on the resp file
-    async deteleFile(fileId){
+    async deleteFile(fileId){
         try {
             return await this.bucket.deleteFile(
                 conf.BucketId,
