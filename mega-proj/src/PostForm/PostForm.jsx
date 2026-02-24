@@ -20,6 +20,11 @@ function PostForm({post}) {
     const userData = useSelector(state => state.auth.userData)
 
     const submit = async(data) =>{
+        if (!userData) {
+            alert("Please login first");
+            navigate("/login");
+        return;
+    }
         if(post){
             const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null 
 
@@ -78,6 +83,12 @@ const slugTransform = useCallback((value) => {
             subscription.unsubscribe()
         }
     },[watch,slugTransform,setValue])
+
+    useEffect(() => {
+    if (!userData) {
+        navigate("/login");
+    }
+}, [userData]);
 
   return (
         <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
