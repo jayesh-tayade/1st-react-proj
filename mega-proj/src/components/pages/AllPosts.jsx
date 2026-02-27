@@ -2,17 +2,24 @@ import React,{useState,useEffect} from 'react'
 import appwriteService from '../../appwrite/config'
 import {Container,PostCard} from '../../components'
 import { useNavigate } from 'react-router-dom'
+import {Query} from "appwrite"
+import { useSelector } from 'react-redux'
 
 
 function AllPosts() {
     const [posts,setPosts] =useState([])
+    const userData=useSelector(state=>state.auth.userData)
     useEffect(()=>{
-            appwriteService.getPosts().then((posts) => {
+        if(!userData) return;
+            appwriteService.getPosts([
+                Query.equal("status","active"),
+                Query.equal("userId",userData.$id)
+            ]).then((posts) => {
                 if(posts){
                 setPosts(posts.documents)
             }
         })
-    },[])
+    },[userData])
 
   return (
     <div className='w-full py-8'>
